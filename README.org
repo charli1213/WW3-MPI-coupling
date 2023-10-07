@@ -1,0 +1,19 @@
+#+TITLE: README
+#+AUTHOR: Charles-Édouard Lizott
+#+date: 7 octobre 2023
+
+* Introduction
+Dans ce répertoire /git/, on retrouve toutes les sous-routines nécessaires à la compilation d'une version /MPI/ de Wavewatch III couplée avec notre modèle /shallow water/ multicouche.
+
+* Arborescence des fichiers et sous-routines
+
+** Python-Build-Fonctions
+Contient toutes les sous-routines Python menant à la création des grilles nécessaire aux fonctionnement de Wavewatch III.
+Par exemple, la fonction /build grid.py/ permet de créer un fichier texte /mapsta.inp/ qui décrit le type de points qu'on retrouve dans un domaine carré $nx\times ny$.
+
+** Modified WW3subroutines
+Contient les sous-routines de type /.f90/ qu'il faut ajouter au fichier /ftn/ du modèle Wavewatch III pour le coupler à notre modèles /shallow water multicouches/.
+
+** Work
+Contient tout ce qu'il faut pour lancer une /run/ à l'aide du modèle Wavewatch III.
+Par exemple, tous les fichiers de type /.inp/ sont nécessaire pour décrire le type de forçage, de grille, comment le modèle roule, etc.

@@ -1,0 +1,1 @@
+../../modelSW/analyse/readata.py
