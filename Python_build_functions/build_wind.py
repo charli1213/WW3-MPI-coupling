@@ -61,7 +61,7 @@ V_wind = Jmat*0.
 
 # On crée le forçage tau. C'est le meme forçage qu'on donnait au
 # modèle shallow-water. 
-Xtau = -tau_wind*np.cos(2*np.pi*(Imat-dy)/(Ly-2*dy))
+Xtau = tau_wind*(1-np.cos(2*np.pi*(Imat-dy)/(Ly-2*dy)))/2
 
 # Calculating cd matrix :
 cd  = 0*Xtau.copy()
