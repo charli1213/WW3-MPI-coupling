@@ -25,8 +25,8 @@ $ Time frame of calculations ----------------------------------------- $
 $ - Starting time in yyyymmdd hhmmss format.
 $ - Ending time in yyyymmdd hhmmss format.
 $
-    20230101 000000
-    20271231 000000
+    20190101 000000
+    20231231 000000
 $    20240204 000000
 $    20250304 000500
 $    20230709 000000
@@ -302,8 +302,8 @@ $ Type 4 : Restart files (no additional data required).
 $                               The data file is restartN.ww3, see
 $                               w3iors.ftn for additional doc.
 $
-$$$$$$$$ TOUS LES 30 JOURS
- 20190101  000000   2592000  20390101 001000
+$$$$$$$$ TOUS LES 365 JOURS
+ 20190101  000000 31536000  20390101 001000
 $
 $ Type 5 : Boundary data (no additional data required).
 $                               The data file is nestN.ww3, see

@@ -2,10 +2,10 @@ from datetime import datetime, timedelta
 
 # > PARAMETERS :
 # Grille
-inner_nx = 128
-inner_ny = 128
-nx   = inner_nx+2    # [ - ] (128 + 2) On compte les murs dans WW3
-ny   = inner_ny+2    # [ - ] (128 + 2) On compte les murs dans WW3
+inner_nx = 512
+inner_ny = 512
+nx   = inner_nx+2    # [ - ] (512 + 2) On compte les murs dans WW3
+ny   = inner_ny+2    # [ - ] (512 + 2) On compte les murs dans WW3
 Lx   = 2e6*(nx)/inner_nx
 Ly   = 2e6*(ny)/inner_ny
 dx   = Lx/(inner_nx)  # [ m ]
@@ -18,7 +18,7 @@ start = 5 # Starting from calm conditions.
 input_period  = 1 # [days]
 current_speed = 0.0
 step          = 0.0 # [%]
-tau_wind      = 0.1
+tau_wind      = 0.05
 ndays         = 365*5  # [days] Model run 
 
 # Time

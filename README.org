@@ -2,18 +2,21 @@
 #+AUTHOR: Charles-Édouard Lizott
 #+date: 7 octobre 2023
 
-* Introduction
-Dans ce répertoire /git/, on retrouve toutes les sous-routines nécessaires à la compilation d'une version /MPI/ de Wavewatch III couplée avec notre modèle /shallow water/ multicouche.
+** Introduction
+Dans ce répertoire /git/, on retrouve entre-autres toutes les sous-routines Fortran 90 nécessaires à la compilation d'une version /MPI/ de Wavewatch III couplée avec notre modèle /shallow water/ multicouche.
+Bien qu'un couplage entre Wavewatch III et un autre modèle soit réalisable avec le module OASIS, j'ai tout simplement modifier trois sous-routines du modèle pour le coupler avec le miens.
+Cette méthode est bien plus simple et permet d'avoir un plus grand contrôle sur le couplage.
 
-* Arborescence des fichiers et sous-routines
 
-** Python-Build-Fonctions
+** Arborescence des fichiers et sous-routines
+
+*** Python-Build-Fonctions
 Contient toutes les sous-routines Python menant à la création des grilles nécessaire aux fonctionnement de Wavewatch III.
 Par exemple, la fonction /build grid.py/ permet de créer un fichier texte /mapsta.inp/ qui décrit le type de points qu'on retrouve dans un domaine carré $nx\times ny$.
 
-** Modified WW3subroutines
+*** Modified WW3subroutines
 Contient les sous-routines de type /.f90/ qu'il faut ajouter au fichier /ftn/ du modèle Wavewatch III pour le coupler à notre modèles /shallow water multicouches/.
 
-** Work
+*** Work
 Contient tout ce qu'il faut pour lancer une /run/ à l'aide du modèle Wavewatch III.
 Par exemple, tous les fichiers de type /.inp/ sont nécessaire pour décrire le type de forçage, de grille, comment le modèle roule, etc.
