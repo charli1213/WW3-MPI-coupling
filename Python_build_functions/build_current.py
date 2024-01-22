@@ -4,6 +4,8 @@ from   datetime import datetime, timedelta
 import PARAMS
 
 # > Importing PARAMS
+ncpath = PARAMS.ncpath
+
 # grid parameters
 nx    = PARAMS.nx #(513)
 ny    = PARAMS.ny #(513)
@@ -82,6 +84,6 @@ ds_final = xr.Dataset({'U_cur':U_cur_da, 'V_cur':V_cur_da},
 ds_final.attrs.update({'long_name':'Wavewatch III Boundary Conditions',
                  'name': 'Boundary Conditions'})
 
-ds_final[['time','y','x','U_cur','V_cur']].to_netcdf('../work/WW3Currentforcings.nc', encoding={'time':{'dtype':'float64','units':'days since 2019-01-01'}})
+ds_final[['time','y','x','U_cur','V_cur']].to_netcdf(ncpath+'WW3Currentforcings.nc', encoding={'time':{'dtype':'float64','units':'days since 2019-01-01'}})
 
 # N.B. Coordinates AND array must be ordered like  [['time','y','x','U_cur','V_cur']]

@@ -1,12 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=SWmodel-3layers
-#SBATCH --mail-type=NONE
-#SBATCH --nodes=10
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=0
-#SBATCH --time=01:00:00
+#SBATCH --job-name=3nz_linear_Tau
 #SBATCH --account=def-lpnadeau
-#SBATCH --output=SWmodel.log
+#SBATCH --mail-type=NONE
+#SBATCH --nodes=1
+#SBATCH --ntasks=18
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=5G
+#SBATCH --time=01-00:00:00
+#SBATCH --output=coupled_model.log
 
 # Batch system info
 echo "Current working directory: `pwd`"
@@ -15,8 +16,12 @@ echo "Host:            "`hostname`
 echo ""
 
 
-# Task 
-srun ./exec
+# Task
+#srun -n 17 --exclusive ww3_shel &
+#srun -n 1 --exclusive ./exec &
+#wait
+mpirun -np 17 ww3_shel : -np 1 ./exec
+
 
 # End
 echo ""

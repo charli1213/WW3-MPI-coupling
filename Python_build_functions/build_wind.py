@@ -4,6 +4,8 @@ from   datetime import datetime, timedelta
 import PARAMS
 
 # > Importing PARAMS
+ncpath = PARAMS.ncpath
+
 # grid parameters
 nx    = PARAMS.nx #(513)
 ny    = PARAMS.ny #(513)
@@ -18,13 +20,15 @@ filesperday   = 1/input_period
 tau_wind      = PARAMS.tau_wind
 ndays         = PARAMS.ndays       # [jours]
 date_start    = PARAMS.date_start
-
+#
+step      = PARAMS.step      # [ % ]
+frequency = PARAMS.frequency # [rad/s]
 
 # --- Charnok relation (from Gill 1982, p30) parameters.
 cd = (1.1*1e-3)
 VKarman = 0.4
 Charnok = 0.0185
-rho_a   = 1.275    #[Kg/m3]
+rho_a   = 1.225    #[Kg/m3]
 z_alti  = 10       #[m]
 g       = 9.81     #[m/s^2]
 
@@ -34,15 +38,16 @@ print("BUILD_WIND_FORCING : FROM {} to {}".format(PARAMS.date_start,PARAMS.date_
 # -------------------------- Grid Settings -------------------------- #
 # Time settings for the NetCDF 
 nt          = int(ndays*filesperday)+1  # Nombre d'itérations
-dt          = int(86400*input_period)   # Temps par itération
-datetime_array = np.array([date_start + timedelta(seconds=int(dt*it)) for it in range(nt)])
+dt_s          = int(86400*input_period)   # Temps par itération [ s ]
+dt_h          = int(24*input_period)      # Temps par itération [ h ]
+datetime_array = np.array([date_start + timedelta(hours=int(dt_h*it)) for it in range(nt)])
 
 # Creating dims arrays.
 xcoords_array  = np.linspace(0,Lx,nx)
 ycoords_array  = np.linspace(0,Ly,ny)
 
 # ---------------------- DataArray preparation ---------------------- #
-tcoords_da = xr.DataArray(datetime_array, dims = {'time'}, attrs = {'units':'$s$'})
+tcoords_da = xr.DataArray(datetime_array, dims = {'time'}, attrs = {'units':'$hours$'})
 xcoords_da = xr.DataArray(xcoords_array,  dims = {'x'},    attrs = {'units':'$m$'})
 ycoords_da = xr.DataArray(ycoords_array,  dims = {'y'},    attrs = {'units':'$m$'})
 
@@ -92,7 +97,7 @@ V_wind_timed = np.zeros((nt,ny,nx))
 
 # Introduction of the varying wind force across period.
 for it in range(nt) :
-    U_wind_timed[it,:,:] = U_wind[:,:]
+    U_wind_timed[it,:,:] = U_wind[:,:]*(1+(step/100)*np.sin(it*dt_s*frequency)) 
     V_wind_timed[it,:,:] = V_wind[:,:]
 
     
@@ -122,7 +127,7 @@ ds_final = xr.Dataset({'U_wind':U_wind_da, 'V_wind':V_wind_da},
 ds_final.attrs.update({'long_name':'Wavewatch III Boundary Conditions',
                  'name': 'Boundary Conditions'})
 
-ds_final[['time','y','x','U_wind','V_wind']].to_netcdf('../work/WW3Windforcings.nc', encoding={'time':{'dtype':'float64','units':'days since 2019-01-01'}})
+ds_final[['time','y','x','U_wind','V_wind']].to_netcdf(ncpath + 'WW3Windforcings.nc', encoding={'time':{'dtype':'float64','units':'seconds since 2019-01-01'}})
 
 
 # N.B. Coordinates AND array must be ordered like  [['time','y','x','U_cur','V_cur']]

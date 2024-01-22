@@ -403,6 +403,7 @@ $
 $ In the 'Out of the box' test setup we run with sub-grid obstacles
 $ and with continuous ice treatment.
 $
+  &REF1 REFCOAST = 0.1 /
   &FLAGTR = 0 /
 $  &FLX3 CDMAX = 3.5E-3 , CTYPE = 0 /
 $ &SDB1 BJGAM = 1.26, BJFLAG = .FALSE. /
@@ -520,8 +521,8 @@ $ Example for rectilinear grid with spherical (lon/lat) coordinate system.
 $ Note that for Cartesian coordinates the unit is meters (NOT km).
 $
      'RECT'  F  'NONE'
-      514        514
-      2000000.0     2000000.0    512.0
+      173        173
+      2000000.0     2000000.0    171.0
       0      0     1.
      -0.1 2.50  20  -1. 3 1 '(....)' 'NAME' 'bottom.inp'
 $ -------------------------------------------------------------

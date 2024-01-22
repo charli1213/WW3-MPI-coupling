@@ -25,12 +25,10 @@ $ Time frame of calculations ----------------------------------------- $
 $ - Starting time in yyyymmdd hhmmss format.
 $ - Ending time in yyyymmdd hhmmss format.
 $
-    20190101 000000
-    20231231 000000
-$    20240204 000000
-$    20250304 000500
-$    20230709 000000
-$    20250305 000500		
+$   [YYYYMMDD]
+    DATEBEGIN 000000
+    DATEEND 000000
+$
 $
 $ Define output data ------------------------------------------------- $
 $
@@ -67,7 +65,7 @@ $          the total number and order of the logical flags is fixed.
 $                               The raw data file is out_grd.ww3, 
 $                               see w3iogo.ftn for additional doc.
 $
-   20190101 000000   21600  20300101 000000
+   20190101 000000   300  20300101 000000
 $----------------------------------------------------------------
 $ Output request flags identifying fields.
 $ 

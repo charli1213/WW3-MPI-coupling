@@ -2,7 +2,7 @@
 #
 #
 #
-build_func_path=/home/charlesedouard/Desktop/Travail/MPI_work/Python_build_functions
+build_func_path=../Python_build_functions
 python $build_func_path/build_grids.py
 python $build_func_path/build_current.py
 python $build_func_path/build_wind.py

@@ -4,6 +4,7 @@ import numpy as np
 
 # ======================== Importing PARAMS ========================= #
 import PARAMS
+ncpath = PARAMS.ncpath
 nx   = PARAMS.nx #513
 ny   = PARAMS.ny #513
 dx   = PARAMS.dx
@@ -23,7 +24,7 @@ mapsta[0]     = np.ones(ny)*0
 mapsta[-1]    = np.ones(ny)*0
 mapsta[:,0]   = np.ones(nx)*0
 mapsta[:,-1]  = np.ones(nx)*0
-np.savetxt('../work/mapsta.inp', mapsta.transpose(), fmt = '%2.0f')
+np.savetxt(ncpath+'mapsta.inp', mapsta.transpose(), fmt = '%2.0f')
 
 # ------------------- Bottom Depth Grid Creation -------------------- #
 
@@ -31,7 +32,7 @@ np.savetxt('../work/mapsta.inp', mapsta.transpose(), fmt = '%2.0f')
 
 bottom = np.ones((nx,ny))
 bottom = bottom*1000
-np.savetxt('../work/bottom.inp',bottom.transpose(),fmt = '%7.3f')
+np.savetxt(ncpath+'bottom.inp',bottom.transpose(),fmt = '%7.3f')
 # ------------------------------------------------------------------- #
 
 
