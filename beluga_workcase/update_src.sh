@@ -11,7 +11,7 @@ rm *.nc
 rm *.inp
 
 # 2. Copying ww3_*.inp files into case
-ww3_inp_dir=$HOME/celiz2/projects/def-lpnadeau/celiz2/mpi_work/ww3_inp_files
+ww3_inp_dir=$HOME/projects/def-lpnadeau/celiz2/mpi_work/ww3_inp_files
 cp $ww3_inp_dir/*.inp .
 echo " > Copying .inp files from ${ww3_inp_dir}"
 rm exec
