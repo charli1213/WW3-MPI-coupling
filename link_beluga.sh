@@ -7,7 +7,9 @@ cd $HOME/projects/def-lpnadeau/celiz2
 
 # bin
 cd $HOME/projects/def-lpnadeau/celiz2/wavewatch3/bin
-rm make_oxygen.sh switch_lizotte
+rm make_oxygen.sh
+rm switch_lizotte
+rm make_beluga.sh
 ln -s /home/celiz2/projects/def-lpnadeau/celiz2/mpi_work/ww3_files/bin/* .
 cd $HOME/projects/def-lpnadeau/celiz2
 
