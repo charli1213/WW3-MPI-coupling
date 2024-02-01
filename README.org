@@ -11,11 +11,17 @@ Cette méthode est bien plus simple et permet d'avoir un plus grand contrôle su
 *** Python-Build-Fonctions
 Contient toutes les scripts Python nécessaires créant les forçage pris en compte par /Wavewatch III/. 
 
-**** bluid grid.py
+**** build grid.py
 Crée le fichier /mapsta.inp/ et /bottom.inp/
 Le fichier texte /mapsta.inp/ décrit le type de point sur la grille utilisée par Wavewatch.
 Par exemple : mer, glace, côte, etc. 
 Le fichier texte /bottom.inp/ décrit la profondeur sur tous les points.
+
+**** build_currents.py
+Crée un fichier netCDF contenant les courants à envoyer à /Wavewatch III/, soit *WW3Currentforcings.nc*.
+
+**** build winds.py
+Crée un fichier netCDF contenant les vents à envoyer à /Wavewatch III/, soit *WW3Windforcings.nc*.
 
 *** ww3 modified subroutines
 Contient les sous-routines de type /.f90/ qui ont été modifiées pour faire fonctionner Wavewatch en coupage avec le modèle /shallow water/.
