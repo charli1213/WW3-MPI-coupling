@@ -26,7 +26,7 @@ frequency = PARAMS.frequency # [rad/s]
 
 # --- Charnok relation (from Gill 1982, p30) parameters.
 cd = (1.1*1e-3)
-VKarman = 0.4
+VKarman = 0.41
 Charnok = 0.0185
 rho_a   = 1.225    #[Kg/m3]
 z_alti  = 10       #[m]
