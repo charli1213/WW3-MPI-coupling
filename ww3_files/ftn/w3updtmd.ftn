@@ -433,7 +433,7 @@
 !/MPI CALL W3XETA (1,6,6)
 !/MPI CALL W3SETW (1,6,6)
 
-!!!(YIT-2)  (Je sais pas pourquoi)
+!!!(YIT-2)  (Je sais pas pourquoi, surement à cause des rebords...)
 !/MPI DO  YIT = 1, NY
 !/MPI    UST_NORM_XY(:,YIT) = UST(   (YIT-2)*(NX-2)+1 : YIT*(NX-2))
 !/MPI    UST_DIR_XY(:,YIT)  = USTDIR((YIT-2)*(NX-2)+1 : YIT*(NX-2))	
