@@ -1,1 +1,1 @@
-/home/celiz2/projects/def-lpnadeau/celiz2/modelSW/analyse/transfert_to_netcdf.py
+../../modelSW/analyse/transfert_to_netcdf.py
