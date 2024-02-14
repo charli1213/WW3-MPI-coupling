@@ -8,14 +8,20 @@
 #                                                                              #
 # ---------------------------------------------------------------------------- #
 #
-# 1. Set-up - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-echo " > Setting-up directories."
-wwatch_dir=$HOME/projects/def-lpnadeau/celiz2/wavewatch3/
-switch_file=lizotte
 #
-# 2. Modules Intel  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-echo " > Loading Intel modules"
-module load intel
+# 1. Set-up - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+echo " > Setting-up wwatch directories and variables."
+wwatch_dir=/aos/home/celizotte/Desktop/workdir/wavewatch/
+switch_file=lizotte
+# export variables and paths (you can also add this part to your " .bashrc ".
+export WWATCH3_NETCDF=NC4
+export NETCDF_CONFIG=/usr/bin/nc-config
+PATH=$PATH:$wwatch_dir/bin
+PATH=$PATH:$wwatch_dir/exe
+export PATH
+# Loading MPI 
+#module load mpi/latest
+module load mpi/2021.6.0
 #
 # 3. cleaning - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 echo " > Cleaning model "
@@ -25,21 +31,16 @@ w3_clean
 # 4. Précompilation et compilation sans MPI (avec Intel)  - - - - - - - - - - -
 # n.b we do that because netCDF module only works with Ifort on compute
 #     canada (sadly). 
-echo " > Setting up switches and compiler for non MPI part (Intel)."
-echo 'n' | w3_setup $wwatch_dir -s $switch_file -c Intel
+echo " > Setting up switches and compiler for non MPI part (gfortran)."
+echo 'n' | w3_setup $wwatch_dir -s $switch_file -c Oxygen_gfortran
 echo " > Compiling non MPI part"
 w3_make
 #
 # 5. Précompilation et compilation avec MPI (avec Gfortran) - - - - - - - - - -
 # n.b. we do that because fishpack only works with gfortran, therefor we can
 #      only use mpi with a gfortran compiled code...
-echo " > Loading GCC module"
-module load gcc
-echo ' > Setting up compiler for MPI (Gfortran)'
-echo 'n' | w3_setup $wwatch_dir -s $switch_file -c gfortran
-echo " > Finally compiling MPI part"
+echo " > Loading GCC mpi module"
 make_MPI
 #
 # 6. Fin  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-module load gcc
 echo " >>> End"
